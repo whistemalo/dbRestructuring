@@ -11,13 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ctl_projects', function (Blueprint $table) {
+        Schema::create('sec_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('code');
+            $table->foreignId('id_project')->constrained('ctl_projects');
+            $table->string('id_request_type');
+            $table->foreignId('id_employee')->constrained('mnt_employees');
+            $table->string('destination');
             $table->timestamps();
             $table->softDeletes();
         });
+
+        // add column to sec_request
     }
 
     /**
@@ -25,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ctl_projects');
+        Schema::dropIfExists('sec_requests');
     }
 };

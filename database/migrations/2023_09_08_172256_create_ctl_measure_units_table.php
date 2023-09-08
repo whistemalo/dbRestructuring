@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ctl_projects', function (Blueprint $table) {
+        Schema::create('ctl_measure_units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('code');
+            $table->string('id_budget_catalog');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ctl_projects');
+        Schema::dropIfExists('ctl_measure_units');
     }
 };

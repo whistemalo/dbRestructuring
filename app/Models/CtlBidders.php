@@ -2,18 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Concerns\HasTimestamps;
+use Carbon\Traits\Timestamp;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class CtlProjects extends Model
+class CtlBidders extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use HasTimestamps;
+    use Timestamp;
 
-    protected $table = 'ctl_projects';
+    protected $table = 'ctl_bidders';
 
     public $timestamps = true;
 
@@ -25,7 +25,9 @@ class CtlProjects extends Model
 
     protected $fillable = [
         'name',
-        'code'
+        'comercial_name',
+        'address',
+        'phone',
     ];
 
     protected $hidden = [
