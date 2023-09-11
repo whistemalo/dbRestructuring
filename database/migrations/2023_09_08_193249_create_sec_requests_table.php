@@ -16,19 +16,27 @@ return new class extends Migration
             $table->foreignId('id_project')->constrained('ctl_projects');
             $table->string('id_request_type');
             $table->foreignId('id_employee')->constrained('mnt_employees');
+            $table->foreignId('id_process')->constrained('sec_processes');
+            $table->foreignId('id_status')->constrained('ctl_request_statuses');
             $table->string('destination');
             $table->timestamps();
             $table->softDeletes();
         });
 
-        // add column to sec_request
+        // Schema::table('sec_processes', function (Blueprint $table) {
+        //     $table->foreignId('id_request')->constrained('sec_requests');
+        // });
+        
     }
-
+    
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
+    //     Schema::table('sec_processes', function (Blueprint $table) {
+    //         $table->dropForeign(['id_solicitud']);
+    //     });
         Schema::dropIfExists('sec_requests');
     }
 };

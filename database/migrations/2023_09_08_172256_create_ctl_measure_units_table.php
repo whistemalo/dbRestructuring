@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ctl_measure_units', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('id_budget_catalog');
+            $table->string('code');
             $table->timestamps();
             $table->softDeletes();
         });

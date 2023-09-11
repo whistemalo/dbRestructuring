@@ -11,16 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sec_offers', function (Blueprint $table) {
+        Schema::create('ctl_request_statuses', function (Blueprint $table) {
             $table->id();
-            // crea las columnas defeinidas en SecOffer
-            $table->foreignId('id_process')->constrained('sec_processes');
-            $table->foreignId('id_bidder')->constrained('ctl_bidders');
-            $table->decimal('amount_offered', 10, 2);
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
-        
         });
+
+        
+
     }
 
     /**
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sec_offers');
+        Schema::dropIfExists('ctl_request_statuses');
     }
 };

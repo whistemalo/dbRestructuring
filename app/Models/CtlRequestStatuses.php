@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SecProcess extends Model
+class CtlRequestStatuses extends Model
 {
     use HasFactory;
-    use Timestamp;
     use SoftDeletes;
+    use Timestamp;
 
-    protected $table = 'sec_processes';
+
+    protected $table = 'ctl_request_statuses';
 
     public $timestamps = true;
 
@@ -24,15 +25,10 @@ class SecProcess extends Model
     protected $softDelete = true;
 
     protected $fillable = [
-        'id_status',
-        'id_employee',
-        // 'id_request',
+        'name',
         'created_at',
         'updated_at',
         'deleted_at'
     ];
-
-
-
-
+    
 }

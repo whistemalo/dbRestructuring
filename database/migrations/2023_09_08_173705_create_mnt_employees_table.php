@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('mnt_employees', function (Blueprint $table) {
             $table->id();
+            $table->string('code_employee');
             $table->string('name');
-            $table->integer('id_status');
-            $table->integer('id_role');
+            $table->string('id_role')->comment('Cambiar esta columna para que use un id');
             $table->timestamps();
             $table->softDeletes();
         });
