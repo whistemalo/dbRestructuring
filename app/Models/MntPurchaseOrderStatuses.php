@@ -7,32 +7,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SecRequest extends Model
+class MntPurchaseOrderStatuses extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     use Timestamp;
+    use SoftDeletes;
 
-    protected  $table = 'sec_requests';
+    protected $table = 'mnt_purchase_order_statuses';
 
-    public  $timestamps = true;
+    protected $timestamps = true;
 
-    protected  $primaryKey = 'id';
+    protected $primaryKey = 'id';
 
-    protected  $keyType = 'int';
+    protected $keyType = 'int';
 
-    protected  $softDelete = true;
+    protected $softDelete = true;
 
+    // fillable fields:
+    // name, description
     protected $fillable = [
-        'id_project',
-        'id_request_type',
+        'name',
+        'description',
         'created_by',
-        'id_request_status',
-        'destination',
+        'updated_by',
         'created_at',
         'updated_at',
         'deleted_at'
     ];
-    
-
 }

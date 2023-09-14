@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sec_offer_details', function (Blueprint $table) {
+        Schema::create('sec_purchase_order_details', function (Blueprint $table) {
             $table->id();
-            // crea las columnas defeinidas en SecOfferDetail
-            $table->foreignId('id_offer')->constrained('sec_offers');
+            // usando los datos del fillable SecPurchaseOrderDetails crea las columnas
+            $table->foreignId('id_purchase_order')->constrained('sec_purchase_orders');
             $table->foreignId('id_item')->constrained('ctl_items');
             $table->integer('quantity');
-            $table->decimal('unit_price', 15, 6);
-            $table->decimal('total_price', 10, 2);
-            $table->foreignId('id_measure_unit')->constrained('ctl_measure_units');
-            $table->integer('original_quantity');
+            $table->decimal('unit_price', 10, 2);
+            $table->decimal('total', 10, 2);
+            $table->string('description');
+            $table->foreignId('updated_by')->constrained('mnt_employees');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sec_offer_details');
+        Schema::dropIfExists('sec_purchase_order_details');
     }
 };

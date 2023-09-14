@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('sec_requests', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_project')->constrained('ctl_projects');
+            $table->foreignId('id_project')
+                    ->nullable()
+            ->constrained('ctl_projects');
             $table->string('id_request_type');
-            $table->foreignId('id_employee')->constrained('mnt_employees');
-            $table->foreignId('id_process')->constrained('sec_processes');
-            $table->foreignId('id_status')->constrained('ctl_request_statuses');
+            $table->foreignId('created_by')->constrained('mnt_employees');
+            $table->foreignId('id_process')
+                    ->nullable()
+                    ->constrained('sec_processes');
+            $table->foreignId('id_request_status')->constrained('ctl_request_statuses');
             $table->string('destination');
             $table->timestamps();
             $table->softDeletes();
@@ -38,5 +42,7 @@ return new class extends Migration
     //         $table->dropForeign(['id_solicitud']);
     //     });
         Schema::dropIfExists('sec_requests');
+        
     }
+
 };

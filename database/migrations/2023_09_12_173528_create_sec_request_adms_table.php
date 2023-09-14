@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('mnt_employees', function (Blueprint $table) {
+        Schema::create('sec_request_adms', function (Blueprint $table) {
             $table->id();
-            $table->string('code_employee')->nullable();
-            $table->string('name');
-            $table->string('id_role')->nullable() ->comment('Cambiar esta columna para que use un id');
-            $table->string('username')->nullable() ->comment('Nombre de usuario heredado de la tabla de EMPL');
+            // // fillable fields; id_request,id_employee, delivery_place
+            $table->foreignId('id_request')->constrained('sec_requests');
+            $table->foreignId('id_employee')->constrained('mnt_employees');
+            $table->string('delivery_place')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('mnt_employees');
+        Schema::dropIfExists('sec_request_adms');
     }
 };

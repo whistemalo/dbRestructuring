@@ -20,19 +20,32 @@ return new class extends Migration
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total_price', 10, 2);
             $table->foreignId('id_measure_unit')->constrained('ctl_measure_units');
-            $table->string('description', 255);
-            $table->string('specifications', 255);
-            $table->string('justification', 255);
+            $table->string('description', 1024)->nullable();
+            $table->string('specifications', 1024)->nullable();
+            $table->string('justification', 1024)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
+
+        // a la tabla sec_offer_details agregale una llave foranea llamada id_request_details
+        Schema::table('sec_offer_details', function (Blueprint $table) {
+            $table->foreignId('id_request_details')->constrained('sec_request_details');
+        });
+        
+
     }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
-    {
+    {   
+        // elimina la llave foranea id_request_details de la tabla sec_offer_details
+        Schema::table('sec_offer_details', function (Blueprint $table) {
+            $table->dropForeign(['id_request_details']);
+        });
+
+
         Schema::dropIfExists('sec_request_details');
     }
 };
