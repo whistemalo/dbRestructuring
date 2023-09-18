@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class SecContractAdm extends Model
+class SecPurchaseOrderAdm extends Model
 {
     use HasFactory;
     use Timestamp;
@@ -27,8 +27,10 @@ class SecContractAdm extends Model
     // id_purchase_order, delivery_place, id_role, id_area
     protected $fillable = [
         'id_purchase_order',
-        'id_role',
+        'id_position',
         'id_area',
+        'created_by',
+        'po_admin',
         'delivery_place',
         'created_at',
         'updated_at',

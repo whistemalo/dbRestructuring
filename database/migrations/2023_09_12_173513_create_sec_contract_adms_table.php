@@ -17,13 +17,16 @@ return new class extends Migration
             administradores de los N contratos que genera un proceso a traves 
             de las X ofertas que se ingresan.');
 
-            
+            $table->foreignId('created_by')->constrained('mnt_employees')->comment('Usuario registra.');
+            $table->foreignId('po_admin')->nullable()->constrained('mnt_employees')->comment('Usuario asignado como adm de la orden de compra.');
+
+
             // esta columna se agrega en la migracion de sec_purchase_orders
             $table->foreignId('id_purchase_order')->constrained('sec_purchase_orders')->comment('Orden de compra a la que se asigna un administrador.');
 
 
-            // $table->foreignId('id_role')->constrained('mnt_roles')->comment('Rol del empleado que se asigna como administrador del contrato.');
-            $table->string('id_role')->nullable()->comment('Rol del empleado que se asigna como administrador del contrato.');
+            // $table->foreignId('id_position')->constrained('mnt_roles')->comment('Rol del empleado que se asigna como administrador del contrato.');
+            $table->string('id_position')->nullable()->comment('Rol del empleado que se asigna como administrador del contrato.');
 
 
             // $table->foreignId('id_area')->constrained('mnt_areas')->comment('Area a la que pertenece el empleado que se asigna como administrador del contrato.');
