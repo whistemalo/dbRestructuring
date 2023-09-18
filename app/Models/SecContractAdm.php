@@ -13,7 +13,7 @@ class SecContractAdm extends Model
     use Timestamp;
     use SoftDeletes;
 
-    protected $table = 'sec_contract_adms';
+    protected $table = 'sec_po_adms';
 
     protected $timestamps = true;
 

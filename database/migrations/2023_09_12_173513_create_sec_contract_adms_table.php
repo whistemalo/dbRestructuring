@@ -12,10 +12,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sec_contract_adms', function (Blueprint $table) {
+        Schema::create('sec_po_adms', function (Blueprint $table) {
             $table->id()->comment('Esta tabla contiene los 
             administradores de los N contratos que genera un proceso a traves 
             de las X ofertas que se ingresan.');
+
+            
             // esta columna se agrega en la migracion de sec_purchase_orders
             $table->foreignId('id_purchase_order')->constrained('sec_purchase_orders')->comment('Orden de compra a la que se asigna un administrador.');
 
@@ -43,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sec_contract_adms');
+        Schema::dropIfExists('sec_po_adms');
     }
 };
