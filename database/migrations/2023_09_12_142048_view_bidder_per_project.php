@@ -15,16 +15,19 @@ return new class extends Migration
   
         DB::statement('CREATE OR REPLACE VIEW public.bidder_per_project
             AS
-            SELECT cp.id AS id_project,
-            so.id AS id_offer,
-            cb.id AS id_bidder,
-            cb.name AS bidder_name,
+            SELECT 
+            DISTINCT so.id AS id_offer,
+           max( sp.id) as id_process,
+           max( cp.id) AS id_project,
+           max( cb.id) AS id_bidder,
+           max( cb.name) AS bidder_name,
             so.amount_offered 
             FROM sec_requests sr
              JOIN ctl_projects cp ON cp.id = sr.id_project
              JOIN sec_processes sp ON sp.id = sr.id_process
              JOIN sec_offers so ON so.id_process = sp.id
-             JOIN ctl_bidders cb ON cb.id = so.id_bidder;
+             JOIN ctl_bidders cb ON cb.id = so.id_bidder
+             GROUP BY so.id
             ');
     }
 
