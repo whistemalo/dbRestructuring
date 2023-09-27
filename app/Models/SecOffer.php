@@ -32,4 +32,18 @@ class SecOffer extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function process()
+    {
+        return $this->belongsTo(SecProcess::class, 'id_process', 'id');
+    }
+    public function bidder()
+    {
+        return $this->belongsTo(CtlBidders::class, 'id_bidder', 'id');
+    }
+
+    public function offerDetails()
+    {
+        return $this->hasMany(SecOfferDetail::class, 'id_offer', 'id');
+    }
 }

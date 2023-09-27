@@ -5,7 +5,7 @@ namespace App\Models\mssql;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solcitiud extends Model
+class Solicitud extends Model
 {
     use HasFactory;
     
@@ -42,4 +42,9 @@ class Solcitiud extends Model
         'idProyecto',
         'fechaRecepcionPresupuesto',    
     ];
+
+    public function details()
+    {
+        return $this->hasMany(DetalleSolicitud::class, 'idSolicitudCompra', 'idSolicitudCompra');
+    }
 }

@@ -27,12 +27,32 @@ class SecRequest extends Model
         'id_project',
         'id_request_type',
         'created_by',
+        'id_process',
         'id_request_status',
         'destination',
         'created_at',
         'updated_at',
         'deleted_at'
     ];
+
+    public function items()
+    {
+        return $this->hasMany(SecRequestDetails::class, 'id_request', 'id')->with('item:id,name')->with('measureUnit:id,name');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(CtlProjects::class, 'id_project', 'id');
+    }
+
+    public function process()
+    {
+        return $this->belongsTo(SecProcess::class, 'id_process', 'id')->with('offers');
+    }
+
+
+
+
     
 
 }

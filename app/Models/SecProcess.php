@@ -33,6 +33,13 @@ class SecProcess extends Model
     ];
 
 
+    public function offers()
+    {
+        // return $this->hasMany(SecOffer::class, 'id_process', 'id')->with('bidder')->with('offerDetails');
+        return $this->hasMany(SecOffer::class, 'id_process', 'id')->with('bidder');
+    }
+
+
 
 
 }

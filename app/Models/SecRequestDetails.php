@@ -34,4 +34,15 @@ class SecRequestDetails extends Model
         'specifications',
         'justification',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(CtlItem::class, 'id_item', 'id');
+    }
+
+    public function measureUnit()
+    {
+        return $this->belongsTo(CtlMeasureUnits::class, 'id_measure_unit', 'id');
+    }
+
 }
