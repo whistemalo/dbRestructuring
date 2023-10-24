@@ -22,7 +22,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/pending-requests', [RequestController::class, 'getPendingRequests']);
 
+
+
+Route::get('/pending-requests/{id_request}', [RequestController::class, 'getPendingRequestById']);
+Route::post('/change-request-status', [RequestController::class, 'changeRequestStatus']);
+
+
+
+
+
 Route::get('/get-request/{id_request}', [RequestController::class, 'getRequestTrazability']);
+
+
+
 
 
 Route::get('/offer/{id_request}', [RequestController::class, 'getRequestTrazability']);

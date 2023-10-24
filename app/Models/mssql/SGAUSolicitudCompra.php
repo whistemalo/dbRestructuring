@@ -5,11 +5,18 @@ namespace App\Models\mssql;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Solicitud extends Model
+class SGAUSolicitudCompra extends Model
 {
     use HasFactory;
     
     protected $connection = 'sqlsrv2';
+
+    protected $primaryKey = 'idSolicitudCompra';
+
+    protected $keyType = 'int';
+
+    // disable timestamps created_at & updated_at
+    public $timestamps = false;
 
     protected $table = 'SGAU_SolicitudCompra';
 
@@ -45,6 +52,6 @@ class Solicitud extends Model
 
     public function details()
     {
-        return $this->hasMany(DetalleSolicitud::class, 'idSolicitudCompra', 'idSolicitudCompra');
+        return $this->hasMany(SGAUDetalleSolicitud::class, 'idSolicitudCompra', 'idSolicitudCompra');
     }
 }

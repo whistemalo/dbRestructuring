@@ -18,6 +18,8 @@ return new class extends Migration
             ->constrained('ctl_projects');
             $table->string('id_request_type');
             $table->foreignId('created_by')->constrained('mnt_employees');
+            $table->foreignId('updated_by')->nullable()->constrained('mnt_employees');
+            $table->foreignId('deleted_by')->nullable()->constrained('mnt_employees');
             $table->foreignId('id_process')
                     ->nullable()
                     ->constrained('sec_processes');

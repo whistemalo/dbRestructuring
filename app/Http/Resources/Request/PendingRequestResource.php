@@ -16,6 +16,7 @@ class PendingRequestResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'created_by' => $this->createdBy->name,
             'next_states'=> [[
                 'id' => 1,
                 'name' => 'Aprobar',
@@ -26,7 +27,8 @@ class PendingRequestResource extends JsonResource
             ],
             'id_request_status' => $this->id_request_status,
             'project_code' => $this->project->code,
-            'project' => $this->project->name,
+            // 'project' => $this->project->name,
+            'title' =>'Solicitud de compra Nº'. $this->id ,
             // forma la estructura para la relacion de uno a mucho de items
             'items' => $this->items->map(function ($item) {
                 return [
@@ -48,8 +50,6 @@ class PendingRequestResource extends JsonResource
                     ],
                 ];
             }),
-
-
 
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

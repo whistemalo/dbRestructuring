@@ -6,17 +6,18 @@ use App\Models\CtlItem;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DetalleSolicitud extends Model
+class SGAUDetalleSolicitud extends Model
 {
     use HasFactory;
 
     protected $connection = 'sqlsrv2';
 
     protected $table = 'SGAU_DetalleSolicitudCompra';
+
+    protected $primaryKey = 'idDetalleSolicitud';
     
 
     protected $fillable = [
-        'idDetalleSolicitud',
         'idSolicitudCompra',
         'idEspecifico',
         'CODI_ITEM',
@@ -37,7 +38,7 @@ class DetalleSolicitud extends Model
 
     public function request()
     {
-        return $this->belongsTo(Solicitud::class, 'idSolicitudCompra', 'idSolicitudCompra');
+        return $this->belongsTo(SGAUSolicitudCompra::class, 'idSolicitudCompra', 'idSolicitudCompra');
     }
 
     public function getItem(){

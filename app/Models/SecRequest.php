@@ -27,6 +27,8 @@ class SecRequest extends Model
         'id_project',
         'id_request_type',
         'created_by',
+        'updated_by',
+        'deleted_by',
         'id_process',
         'id_request_status',
         'destination',
@@ -34,6 +36,12 @@ class SecRequest extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function createdBy()
+    {
+        return $this->belongsTo(MntEmployee::class, 'created_by', 'id');
+    }
+
 
     public function items()
     {
